@@ -5,7 +5,8 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     public GameObject player;
-    private Vector3 offset = new Vector3(0, 5, -7);
+    public float offsetBehind = -10;
+    public float offsetAbove = 5;
 
     void Start()
     {
@@ -14,6 +15,8 @@ public class FollowPlayer : MonoBehaviour
 
     void LateUpdate()
     {
+        var offset = player.transform.forward * offsetBehind + Vector3.up * offsetAbove;
         transform.position = player.transform.position + offset;
+        transform.rotation = player.transform.rotation;
     }
 }
